@@ -4,6 +4,8 @@ class Seesaw{
   float seesawHeight = 20;
   float degree;
   float currentDegree;
+  float left = 0;
+  float right = 0;
   
   void display(){
     stroke(0);
@@ -13,6 +15,11 @@ class Seesaw{
     line(originX-seesawWidth/2,originY+sin(radians(60))*sideLength, 
         originX+seesawWidth/2,originY+sin(radians(60))*sideLength);
     
+    if(degree > 27)
+      degree = 27;
+    else if(degree < -27)
+      degree = -27;
+    
     if(abs(currentDegree - degree) > 0.2){
       if(currentDegree < degree){
         currentDegree += 0.2;
@@ -20,10 +27,8 @@ class Seesaw{
         currentDegree -= 0.2;
       }
     }
+      
     if (testMode){
-    //  currentDegree += 0.2;
-    //  if (currentDegree >= 30)
-    //    currentDegree = -30;
       println(currentDegree);
     }
     rotate(radians(currentDegree));
